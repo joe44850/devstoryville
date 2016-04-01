@@ -3,7 +3,8 @@
 	10 - GLOBALS
 	20 - DIVS, CONTAINERS
 	30 - HEADINGS, LINKS
-	40 - IMAGES
+	40 - MENU
+	100 - MISC
 	
 */
 
@@ -12,6 +13,14 @@ body{
 	topmargin:0;
 	leftmargin:0;
 	font-family:sans-serif;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#EFEFEF+1,cccccc+100 */
+	background: #EFEFEF; /* Old browsers */
+	background: -moz-linear-gradient(top, #EFEFEF 1%, #cccccc 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #EFEFEF 1%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #EFEFEF 1%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EFEFEF', endColorstr='#cccccc',GradientType=0 );
+	background-repeat:no-repeat;
+	background-attachment:fixed;
 }
 
 
@@ -34,7 +43,7 @@ body{
 
 #HeaderCenter{
 	margin:0 auto;
-	width:100%;
+	width:90%;
 	max-width:1200px;
 	color:#fff;
 }
@@ -52,7 +61,35 @@ body{
 
 
 
-/*****************	40 - MISC 				********/
+/***************** 	40 - MENU 				***********/
+ul#menuMain {
+	padding:0;
+	margin:0;
+}
+
+ul#menuMain li {
+	list-style:none;
+	display:inline;
+	padding:0;
+	margin:0;
+}
+
+ul#menuMain li  a{
+	padding-right:15px;
+	font-size:14px;
+	color:#F5F5DC;
+	text-decoration:none;
+	font-weight:700;
+	cursor:pointer;
+	text-shadow:0px 3px 3px rgba(0,0,0,100%);
+}
+
+ul#menuMain li a:hover{
+	color:#fff;
+}
+
+
+/*****************	100 - MISC 				********/
 #LogoMain {
 	width:163px;
 	height:40px;
@@ -61,4 +98,5 @@ body{
 	min-height:40px;
 	cursor:pointer;
 	margin-top:5px;
+	margin-right:100px;
 }

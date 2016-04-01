@@ -5,9 +5,11 @@
 		private $site;
 		public $title;
 		public $cache = false;
+		public $loggedin = false;
 	
 		public function __construct(){
 			$this->site = SITE;
+			if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) $this->loggedin = true ;			
 		}
 	
 		//loads every js file in a directory, send a directory that is relative to root, like _js/somejsdir
@@ -92,14 +94,36 @@
 		}
 		
 		public function NavBar(){
+			$menu_main = $this->MenuMain();
 			$html = "
 				<div id=\"HeaderTop\">
 					<div id=\"HeaderCenter\">			
 						<div id=\"LogoMain\">&nbsp;</div>
+						$menu_main
 					</div>
 				</div>
 			";
 			echo $html;
 		}
+		
+		public function MenuMain(){
+				$account_text = $this->loggedin ? "My Account" : "Sign Up";
+				$html = "
+					<div>
+						<ul id='menuMain'>
+						<li><a>Q&A</a></li>
+						<li><a>Chat</a></li>
+						<li><a>Stories</a></li>
+						<li><a>Search</a>
+						<li><a>$account_text</a></li>
+					</ul>
+				</div>";		
+			
+			return $html;
+		}
 	
 	}
+	
+	
+	
+	//

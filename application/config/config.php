@@ -32,6 +32,7 @@ if($is_local){
 	define("SITE", "http://localhost/dev-storyville");
 	define("SITE_TITLE", "Storyville");
 	define("ROOT", $_SERVER['DOCUMENT_ROOT']."/dev-storyville");
+	define("LIB", ROOT."/application/libraries");
 	define("FAVICON", SITE."/_images/site/favicon.png");
 	define("IS_LOCAL", TRUE);
 }
