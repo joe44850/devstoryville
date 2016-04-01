@@ -1,0 +1,64 @@
+/*
+
+	10 - GLOBALS
+	20 - DIVS, CONTAINERS
+	30 - HEADINGS, LINKS
+	40 - IMAGES
+	
+*/
+
+/*****************	10 - GLOBALS 		******************/
+body{
+	topmargin:0;
+	leftmargin:0;
+	font-family:sans-serif;
+}
+
+
+/*****************	20 - DIVS, CONTAINERS 		********/
+#HeaderTop{
+	height: 44px;
+    line-height: 44px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    top: 0;
+	left:0;
+	background: #6d1505; /* Old browsers */
+	background: -moz-linear-gradient(top, #6d1505 0%, #600f04 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #6d1505 0%,#600f04 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #6d1505 0%,#600f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d1505', endColorstr='#600f04',GradientType=0 ); 
+	margin:0 auto;
+}
+
+#HeaderCenter{
+	margin:0 auto;
+	width:100%;
+	max-width:1200px;
+	color:#fff;
+}
+
+#HeaderCenter div{
+	display:inline-block;
+	vertical-align:middle;
+	padding-right:5px;
+}
+
+
+
+
+/*****************	30 - HEADINGS, LINKS		********/
+
+
+
+/*****************	40 - MISC 				********/
+#LogoMain {
+	width:163px;
+	height:40px;
+	background:url('images/Logo-main.png') no-repeat;
+	min-width:163px;
+	min-height:40px;
+	cursor:pointer;
+	margin-top:5px;
+}
