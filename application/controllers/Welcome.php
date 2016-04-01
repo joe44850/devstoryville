@@ -12,6 +12,7 @@ class Welcome extends CI_Controller {
 		$params = Array();
 		$params['head_start'] = $this->Html->HeadStart();
 		$params['body_start'] = $this->Html->BodyStart();
+		$params['nav_bar'] = $this->Html->NavBar();
 		$this->load->view('welcome_message', $params);
 	}	
 	 
