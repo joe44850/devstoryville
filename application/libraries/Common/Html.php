@@ -69,7 +69,12 @@
 				}
 			}
 			$html.="\t<link rel='shortcut icon' type='image/png' href='".FAVICON."' />"; 
-			echo $html;
+			$html.="
+					<meta charset=\"utf-8\">
+					<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+					<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+					";
+			return $html;
 		}		
 		
 		public function BodyStart(){
@@ -90,7 +95,7 @@
 		public static function OnLoad($javascript=""){
 			if(!$javascript){ return;}
 			$html = "<img src='".SITE."/_images/1x1.png' onload=\"function(){ ".$javascript.";}\" style='height:0px;width:0px;' />";
-			echo $html;
+			return $html;
 		}
 		
 		public function NavBar(){
@@ -103,7 +108,7 @@
 					</div>
 				</div>
 			";
-			echo $html;
+			return $html;
 		}
 		
 		public function MenuMain(){

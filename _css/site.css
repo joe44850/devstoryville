@@ -13,14 +13,7 @@ body{
 	topmargin:0;
 	leftmargin:0;
 	font-family:sans-serif;
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#EFEFEF+1,cccccc+100 */
-	background: #EFEFEF; /* Old browsers */
-	background: -moz-linear-gradient(top, #EFEFEF 1%, #cccccc 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #EFEFEF 1%,#cccccc 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #EFEFEF 1%,#cccccc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EFEFEF', endColorstr='#cccccc',GradientType=0 );
-	background-repeat:no-repeat;
-	background-attachment:fixed;
+	background:#f6f6ea;
 }
 
 
@@ -46,6 +39,7 @@ body{
 	width:90%;
 	max-width:1200px;
 	color:#fff;
+	background:url('images/buildings2.png') no-repeat right;
 }
 
 #HeaderCenter div{
@@ -54,6 +48,29 @@ body{
 	padding-right:5px;
 }
 
+.centered-rows{
+	max-width:1200px;
+	width:100%;
+	margin:0 auto;
+}
+
+.col-left{
+	width:70%;
+	float:left;
+}
+
+.col-right{
+	width:30%;
+	float:left;
+}
+
+.modal-container{
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 5px;
+	box-shadow: 0 5px 15px rgba(0,0,0,.5);
+	padding:10px;
+}
 
 
 
@@ -88,6 +105,17 @@ ul#menuMain li a:hover{
 	color:#fff;
 }
 
+/*****************	50 - FORMS				*********/
+.signup-wrapper{
+    width: 420px;	
+    margin: 0 auto;
+	background:#fff;
+}
+
+.signup-wrapper h1 {
+	font-size:24px;
+}
+
 
 /*****************	100 - MISC 				********/
 #LogoMain {
@@ -99,4 +127,24 @@ ul#menuMain li a:hover{
 	cursor:pointer;
 	margin-top:5px;
 	margin-right:100px;
+}
+
+.grd-light{
+	background: #eeeeee; /* Old browsers */
+	background: -moz-linear-gradient(top, #eeeeee 0%, #ffffff 50%, #eeeeee 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #eeeeee 0%,#ffffff 50%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #eeeeee 0%,#ffffff 50%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 );
+}
+.error-list ul{
+	margin:0;
+	padding:0;
+}
+.error-list ul li{
+	color:red;
+	list-style:none;
+	padding:0;
+	margin-left:0px;
+	margin-right:0;
+	font-size:85%;
 }

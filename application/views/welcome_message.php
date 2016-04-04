@@ -5,8 +5,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	echo $head_start;
 	echo $body_start;
 	echo $nav_bar;
-	echo $msg;
+	
 ?>
+	<p>&nbsp;</p><p>&nbsp;</p>
+	<div class='centered-rows'>		
+		<div class='col-left'>
+			<?php
+				echo $msg;
+				echo $signup_html;
+			?>
+		</div>
+		<div class='col-centered'>
+		
+		</div>
+	</div>
 	
 </body>
 </html>
