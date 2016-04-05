@@ -82,3 +82,7 @@
 			echo "<div><b>$args</b></div>";
 		}
 	}
+
+	public static function SafePost(){
+		
+	}
