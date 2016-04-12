@@ -1,5 +1,6 @@
 <?php
 	//mostly static functions that are easy to call
+	if(!class_exists("SQL")){ require_once(LIB."/DB/sql.php");}
 	
 	class Common {
 	
@@ -83,6 +84,9 @@
 		}
 	}
 
-	public static function SafePost(){
-		
+	function SafePost(){
+		$conn = SQL::Connect();
+		foreach($_REQUEST as $key=>$val){
+			$_POST[$key] = mysql_real_escape_string($conn, $val);
+		}
 	}

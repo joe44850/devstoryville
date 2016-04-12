@@ -37,6 +37,10 @@ if($is_local){
 	define("FAVICON", SITE."/_images/site/favicon.png");
 	define("IS_LOCAL", TRUE);
 	define("BASE", "/dev-storyville/");
+	define("DBHOST", "localhost");
+	define("DBUSER", "root");
+	define("DBPASS", "");
+	define("DBNAME", "dbstory");
 }
 else{
 	

@@ -7,7 +7,7 @@
 			$html = "
 				<div class='signup-wrapper modal-container'>
 					<h1>Join StoryVille.me today.</h1>
-					<form id='signup' name='signup' method='post' action='".BASE."register'>
+					<form id='signup' name='signup' method='post' action='".BASE."registeruser/attempt'>
 						<fieldset class=\"form-group\">
 							<label for=\"username\">Username</label>
 							<input type='text' name=\"signup[username]\" class=\"form-control\" id=\"username\" 
