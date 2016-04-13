@@ -2,9 +2,9 @@
 
 	class Authenticate {
 		
-		public static function Check($user="", $email=""){
-			if(!$user){ return false;}
+		public static function Check($email="", $pwd=""){
 			if(!$email){ return false;}
+			if(!$pwd){ return false;}
 			$sql = "
 				SELECT * FROM `users` 
 				WHERE email = '".$email."'
@@ -12,6 +12,7 @@
 			";
 			$row = SQL::Query($sql, true);
 			return $row;
-		}
+		}	
+		
 		
 	}

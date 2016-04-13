@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require_once(LIB."/Message/Message.php");
-require_once(MOD."/Register/Register.php");
+require_once(HLP."/pkg-default.php");
 
 class RegisterUser extends CI_Controller {
 	

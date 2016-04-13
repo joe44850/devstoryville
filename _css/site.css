@@ -54,6 +54,12 @@ body{
 	margin:0 auto;
 }
 
+.div-420{
+	width:420px;
+	max-width:420px;
+	margin:0 auto;
+}
+
 .col-left{
 	width:70%;
 	float:left;
@@ -110,6 +116,7 @@ ul#menuMain li a:hover{
     width: 420px;	
     margin: 0 auto;
 	background:#fff;
+	margin-top:50px;
 }
 
 .signup-wrapper h1 {

@@ -9,7 +9,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 	<p>&nbsp;</p><p>&nbsp;</p>
 	<div class='centered-rows'>		
-		<? echo $welcome_html;?>		
+		<?php 
+			echo $msg;
+			echo $main_html;
+		?>		
 	</div>
 	
 </body>

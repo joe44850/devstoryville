@@ -6,24 +6,29 @@
 		public $title;
 		public $cache = false;
 		public $loggedin = false;
+		public $favicon;
 	
 		public function __construct(){
 			$this->site = SITE;
+			$this->favicon = BASE."/_images/site/favicon.png";
 			if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) $this->loggedin = true ;			
 		}
 	
 		//loads every js file in a directory, send a directory that is relative to root, like _js/somejsdir
-		public function LoadJavascript($dir=""){
+		public function LoadJavascript($dir_string_array=""){
 			$js = "";
-			$root_dir = ROOT."/".$dir;
-			$files = Common::LoadFiles($root_dir, "js");
-			if(is_array($files)){
-				foreach($files as $file){
-					//remove root and replace with site	
-					$f = $dir."/".$file;
-					$js.="\n\t<script type='text/javascript' src='". SITE."/".$f ."'></script>";
-				}				
-				$js.="\n";
+			$dirs = explode(",", $dir_string_array);
+			foreach($dirs as $dir){
+				$root_dir = ROOT."/".$dir;
+				$files = Common::LoadFiles($root_dir, "js");
+				if(is_array($files)){
+					foreach($files as $file){
+						//remove root and replace with site	
+						$f = $dir."/".$file;
+						$js.="\n\t<script type='text/javascript' src='". SITE."/".$f ."'></script>";
+					}				
+					$js.="\n";
+				}
 			}
 			return $js;
 		}
@@ -68,7 +73,7 @@
 					$html.= $args;
 				}
 			}
-			$html.="\t<link rel='shortcut icon' type='image/png' href='".FAVICON."' />"; 
+			$html.="\t<link rel='shortcut icon' type='image/png' href='".$this->favicon."' />"; 
 			$html.="
 					<meta charset=\"utf-8\">
 					<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">

@@ -1,9 +1,9 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On
+  RewriteEngine On
 	RewriteBase /dev-storyville/
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond $1 !^(templates|plugins|assets|js|css)
+	RewriteCond $1 !^(_templates|_plugins|_assets|_js|_css)
 	RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
 

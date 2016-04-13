@@ -29,11 +29,13 @@ $is_local = (preg_match("#localhost#", $_SERVER['HTTP_HOST'])) ? true : false;
 if($is_local){	
 	
 	$config['base_url'] = "dev-storyville";
-	define("SITE", "http://localhost/dev-storyville");
-	define("SITE_TITLE", "Storyville");
+	($_SERVER['SERVER_PORT'] != 80) ? $port = ":".$_SERVER['SERVER_PORT'] : "";
+	define("SITE", "http://localhost".$port."/dev-storyville");
+	define("SITE_TITLE", "Storyville");	
 	define("ROOT", $_SERVER['DOCUMENT_ROOT']."/dev-storyville");
 	define("LIB", ROOT."/application/libraries");
 	define("MOD", ROOT."/application/models");
+	define("HLP", ROOT."/application/helpers");
 	define("FAVICON", SITE."/_images/site/favicon.png");
 	define("IS_LOCAL", TRUE);
 	define("BASE", "/dev-storyville/");
@@ -41,6 +43,8 @@ if($is_local){
 	define("DBUSER", "root");
 	define("DBPASS", "");
 	define("DBNAME", "dbstory");
+	define("USER", "storyville-user");
+	define("PWD", "storyville-pwd");
 }
 else{
 	

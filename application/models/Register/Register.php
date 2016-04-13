@@ -36,14 +36,10 @@
 						<a href='#' class='btn btn-default' id='sbmit' name='sbmit'>Register</a>
 						
 					</form>
-					<script>$('#signup').validate({
-						submit: {
-							settings: {
-								button : 'a#sbmit',
-								errorListClass: 'error-list',
-							}
-						}
-					});</script>
+					<script>
+						MyRegister = new Register();
+						MyRegister.InitSignup();
+					</script>
 				</div>
 			";
 			return $html;
