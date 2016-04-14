@@ -29,7 +29,7 @@ $is_local = (preg_match("#localhost#", $_SERVER['HTTP_HOST'])) ? true : false;
 if($is_local){	
 	
 	$config['base_url'] = "dev-storyville";
-	($_SERVER['SERVER_PORT'] != 80) ? $port = ":".$_SERVER['SERVER_PORT'] : "";
+	$port = ($_SERVER['SERVER_PORT'] != 80) ? ":".$_SERVER['SERVER_PORT'] : "";
 	define("SITE", "http://localhost".$port."/dev-storyville");
 	define("SITE_TITLE", "Storyville");	
 	define("ROOT", $_SERVER['DOCUMENT_ROOT']."/dev-storyville");

@@ -10,27 +10,27 @@
 					<form id='signup' name='signup' method='post' action='".BASE."registeruser/attempt'>
 						<fieldset class=\"form-group\">
 							<label for=\"username\">Username</label>
-							<input type='text' name=\"signup[username]\" class=\"form-control\" id=\"username\" 
+							<input type='text' name=\"username\" class=\"form-control\" id=\"username\" 
 							placeholder=\"Enter a username\" 
-							data-validation=\"[NOTEMPTY]\">
+							data-validation=\"{min:3}\">
 							<small class='text-muted'>Must be at least 5 characters long</small>
 						</fieldset>
 						
 						<fieldset class='form-group'>
 							<label for=\"email\">Email</label>
-							<input type='text' name='signup[email]' class='form-control' id='email' 
+							<input type='text' name='email' class='form-control' id='email' 
 							placeholder='Email address' 
-							data-validation=\"[NOTEMPTY]\"
+							data-validation=\"{min:5, rules: ['email']}\"
 							>
 							<small class='text-muted'>We will never share your email</small>
 						</fieldset>
 						
 						<fieldset class='form-group'>
 							<label for=\"password\">Password</label>
-							<input type=\"password\" name=\"signup[password]\" class=\"form-control\" id=\"password\" 
-							data-validation=\"[NOTEMPTY]\"
+							<input type=\"password\" name=\"pwd\" class=\"form-control\" id=\"password\" 
+							data-validation=\"{min:7}\"
 							>
-							<small class=\"text-muted\">Must be at least 7 characters long</small>
+							<small class='text-muted'>Password must be at least 7 characters long</small>
 						</fieldset>
 						
 						<a href='#' class='btn btn-default' id='sbmit' name='sbmit'>Register</a>

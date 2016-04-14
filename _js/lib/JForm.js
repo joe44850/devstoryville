@@ -46,17 +46,21 @@ var JForm = Class({
 	},
 	
 	PropertyIsValid : function(oItem){
+		
 		if(!oItem.hasAttribute("data-validation")){ return true;}
 		var jsonString = oItem.getAttribute("data-validation");
 		var jsonRules = JSON.stringify(eval("("+jsonString+")"));
 		var jsonObject = JSON.parse(jsonRules);	
 		
-		if(oItem.value.length < jsonObject.MIN){ 
-			var error = (jsonObject.MIN == 1) ? "Required" : "Must be at least "+jsonObject.MIN+" characters";
+		if(jsonObject.hasOwnProperty("min") && oItem.value.length < jsonObject.min){ 
+			var error = (jsonObject.min == 1) ? "Required" : "Must be at least "+jsonObject.min+" characters";
 			this.PrintError(oItem, error);
 			oItem.focus();
 			return false;
 		}	
+		else if(jsonObject.hasOwnProperty("rules")){
+			console.log("Json rules...");
+		}
 		this.PrintOK(oItem);		
 		return true;
 	},
@@ -75,6 +79,7 @@ var JForm = Class({
 	},
 	
 	PrintOK : function(oItem){
+		
 		var id = oItem.id+"-error";
 		self = this;
 		if(document.getElementById(id) == null){
