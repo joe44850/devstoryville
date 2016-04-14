@@ -28,6 +28,23 @@ var Spa = Class({
 	
 	DeleteFrame : function(oFrame){
 		oFrame.parentNode.removeChild(oFrame);
+	},
+	
+	DivCover : function(oDiv){
+		var jDiv = $(oDiv);
+		var position = jDiv.position();
+		var CoverDiv = document.createElement("div");
+		CoverDiv.style.position = "absolute";
+		CoverDiv.style.left = position.left+"px";
+		CoverDiv.style.top = position.top+"px";
+		CoverDiv.style.height = jDiv.height()+"px";
+		CoverDiv.style.width = jDiv.width()+"px";
+		CoverDiv.style.opacity = .0;
+		CoverDiv.style.background = "#fff";
+		CoverDiv.style.zIndex = 1000;
+		document.body.appendChild(CoverDiv);
+		/* fade in quickly */
+		$(CoverDiv).animate({opacity:.5},250);
 	}
 	
 });

@@ -31,7 +31,10 @@ var JForm = Class({
 			if(this.oFrame != null){ this.Spa.DeleteFrame(this.oFrame);}
 			this.oFrame = this.Spa.CreateFrame();
 			this.oForm.setAttribute("target", this.oFrame.name);
+			this.FormDisable();
+			this.SetCallBack();
 			this.oForm.submit();
+			
 		}
 		else return false;
 	},
@@ -46,30 +49,59 @@ var JForm = Class({
 	},
 	
 	PropertyIsValid : function(oItem){
-		
+		var retval = { error:null, validated:false };
 		if(!oItem.hasAttribute("data-validation")){ return true;}
 		var jsonString = oItem.getAttribute("data-validation");
 		var jsonRules = JSON.stringify(eval("("+jsonString+")"));
-		var jsonObject = JSON.parse(jsonRules);	
-		
-		if(jsonObject.hasOwnProperty("min") && oItem.value.length < jsonObject.min){ 
-			var error = (jsonObject.min == 1) ? "Required" : "Must be at least "+jsonObject.min+" characters";
-			this.PrintError(oItem, error);
-			oItem.focus();
-			return false;
-		}	
-		else if(jsonObject.hasOwnProperty("rules")){
-			console.log("Json rules...");
+		var jsonObject = JSON.parse(jsonRules);			
+		if(!(retval = this.ValidateMin(oItem, jsonObject)).validated){ 			
+			return this.ValidateFail(oItem, retval.error);
 		}
+		if(!(retval = this.ValidateRule(oItem, jsonObject)).validated){			
+			return this.ValidateFail(oItem, retval.error);
+		}
+		
 		this.PrintOK(oItem);		
 		return true;
+	},
+	
+	ValidateFail : function(oItem, error){		
+		this.PrintError(oItem, error);
+		oItem.focus();
+		return false;
+	},
+	
+	ValidateMin : function(oItem, jsonObject){
+		var retval = { error:null, validated:true};
+		if(jsonObject.hasOwnProperty("min") && oItem.value.length < jsonObject.min){ 
+			retval.error = (jsonObject.min == 1) ? "Required" : "Must be at least "+jsonObject.min+" characters";			
+			retval.validated = false;
+		}
+		return retval;
+	},
+	
+	ValidateRule : function(oItem, jsonObject){		
+		var retval = { error:null, validated:true};
+		if(!jsonObject.hasOwnProperty("rules")){ return retval;}		
+		var key = arrayKey("email", jsonObject.rules);
+		if(key < 0){ return retval;}		
+		if(jsonObject.rules[key] && !JFormRules.Email(oItem.value)){
+			retval.error = "Not a valid email address";			
+			retval.validated = false;
+		}		
+		return retval;
 	},
 	
 	PrintError : function(oItem, error){
 		var id = oItem.id+"-error";
 		self = this;
-		if(document.getElementById(id) == null){ 
+		var oErrorDiv = document.getElementById(id);
+		if(oErrorDiv == null){ 
 			$(oItem).after("<span style='color:red;' id='"+id+"' class='input-error'>"+error+"</span>");			
+		}
+		else{
+			oErrorDiv.style.color = "red";
+			oErrorDiv.innerHTML = error;
 		}
 	},
 	
@@ -89,6 +121,23 @@ var JForm = Class({
 		oError.innerHTML = "&#10003;";
 		oError.style.color = "green";
 		oError.style.weight = "bold";
+	},
+	
+	FormDisable : function(oForm){
+		var oForm = (typeof oForm == "undefined") ? this.oForm : oForm;
+		this.Spa.DivCover(oForm);
+	},
+	
+	SetCallBack : function(){
+		self = this;
+		if(this.oForm.hasAttribute("data-callback")){
+			var callBackString = this.oForm.getAttribute("data-callback");
+			var callBack = eval(callBackString);
+			this.oFrame.onload = function(){
+				var json = $(self.oFrame).contents().find("body").html();
+				callBack(json);
+			};
+		}
 	}
 	
 	

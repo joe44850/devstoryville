@@ -3,11 +3,13 @@
 
 	class Register implements IRegister {
 		
+		public $User;
+		
 		public function SignupHtml(){
 			$html = "
 				<div class='signup-wrapper modal-container'>
 					<h1>Join StoryVille.me today.</h1>
-					<form id='signup' name='signup' method='post' action='".BASE."registeruser/attempt'>
+					<form id='signup' name='signup' method='post' action='".BASE."registeruser/attempt' data-callback=CompleteRegistration>
 						<fieldset class=\"form-group\">
 							<label for=\"username\">Username</label>
 							<input type='text' name=\"username\" class=\"form-control\" id=\"username\" 
@@ -38,15 +40,19 @@
 					</form>
 					<script>
 						MyRegister = new Register();
-						MyRegister.InitSignup();
+						MyRegister.InitSignup();						
 					</script>
 				</div>
 			";
 			return $html;
 		}
 		
-		public function ProcessNewSignup(){
-			
+		public function Create($vars=""){
+			$this->User = $_POST;
+		}
+		
+		public function CreateResult(){
+			return json_encode($this->User);			
 		}
 		
 		public function EmailNewSignup(){

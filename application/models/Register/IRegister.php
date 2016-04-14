@@ -2,7 +2,7 @@
 
 	interface IRegister {
 		
-		public function ProcessNewSignup();
+		public function Create();
 		public function EmailNewSignup();
 		
 	}
