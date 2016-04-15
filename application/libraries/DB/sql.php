@@ -41,16 +41,15 @@ class SQL {
     }
 	
 	public static function Post($vars="", $table=""){
-		$vars = safe($vars);
+		//$vars = safe($vars);
 		if(!$vars){ return; }
 		$sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.columns WHERE TABLE_NAME = '$table' ";
 		$rows = SQL::Query($sql);
 		$keys = array();
 		$values = array();
 		$columns = array();
-		foreach($rows as $arr){ foreach($arr as $key=>$val){ echo $columns[] = $val;}}
-		foreach($vars as $key=>$val){
-			echo "$key = $val";
+		foreach($rows as $arr){ foreach($arr as $key=>$val){ $columns[] = $val;}}
+		foreach($vars as $key=>$val){			
 			if(in_array($key, $columns)){ 
 				$keys[] = $key;
 				$values[] = $val;
@@ -58,8 +57,8 @@ class SQL {
 		}
 		$sql = "INSERT INTO `$table` (".implode(",", $keys).") VALUES ('".implode("','", $values)."')";
 		$conn = self::connect();
-		mysqli_query($conn, $sql) or die("<font color='red'>$sql</font> " . mysql_error());
-		SQL::Query($sql);
+		mysqli_query($conn, $sql);
+		return mysqli_insert_id($conn);
 	}
 
 }
