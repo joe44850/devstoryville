@@ -42,9 +42,17 @@ var Spa = Class({
 		CoverDiv.style.opacity = .0;
 		CoverDiv.style.background = "#fff";
 		CoverDiv.style.zIndex = 1000;
+		CoverDiv.id = "spa-cover";
 		document.body.appendChild(CoverDiv);
 		/* fade in quickly */
 		$(CoverDiv).animate({opacity:.5},250);
+	},
+	
+	RemoveCover : function(){
+		var jCover = $("#spa-cover");
+		jCover.animate({opacity:0},250, function(){
+			jCover.remove();
+		});
 	}
 	
 });

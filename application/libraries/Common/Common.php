@@ -87,6 +87,14 @@
 	function SafePost(){
 		$conn = SQL::Connect();
 		foreach($_REQUEST as $key=>$val){
-			$_POST[$key] = mysql_real_escape_string($conn, $val);
+			$_POST[$key] = mysqli_real_escape_string($conn, $val);
 		}
+	}
+	
+	function safe($vars){
+		$conn = SQL::Connect();
+		foreach($vars as $key=>$val){
+			$vars[$key] = mysqli_real_escape_string($conn, $val);
+		}
+		return $vars;
 	}

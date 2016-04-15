@@ -49,10 +49,23 @@
 		
 		public function Create($vars=""){
 			$this->User = $_POST;
+			if(!$this->UserExists($this->User['username'], $this->User['email'])){
+				SQL::Post($this->User, 'users');
+			}
 		}
 		
 		public function CreateResult(){
 			return json_encode($this->User);			
+		}
+		
+		public function UserExists($user="", $email=""){
+			$sql = "
+					SELECT 1 FROM users 
+					where LOWER(username) = LOWER('$user')
+					OR LOWER(email) = LOWER('$email') 
+				";
+			if(SQL::Query($sql)){ return true;}
+			return false;
 		}
 		
 		public function EmailNewSignup(){

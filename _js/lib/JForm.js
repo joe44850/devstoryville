@@ -136,6 +136,7 @@ var JForm = Class({
 			this.oFrame.onload = function(){
 				var json = $(self.oFrame).contents().find("body").html();
 				callBack(json);
+				self.Spa.RemoveCover();
 			};
 		}
 	}
