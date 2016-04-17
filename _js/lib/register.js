@@ -12,7 +12,10 @@ var Register = Class({
 		this._SpaForm = _SpaForm;
 		json = JSON.parse(json);
 		if(!json.success){ this.DisplayError(json);}
-		else this.DisplaySuccess(json);
+		else {
+			this.DisplaySuccess(json);
+			this.StoreUserInfo(json);
+		}
 	},
 	
 	DisplayError : function(json){
@@ -38,8 +41,11 @@ var Register = Class({
 		var html = "<div><center><p>User created!<br />Please check your email to complete.</p><p>&nbsp;</p></center></div>";
 		setTimeout(function(){
 			DisplayComplete();
-		},500);
-		
+		},500);		
+	},
+	
+	StoreUserInfo : function(json){
+		console.log(json);
 	}
 	
 	
@@ -49,4 +55,10 @@ function CompleteRegistration(json, _SpaForm, callBack){
 	_Register = new Register();
 	_Register.Complete(json, _SpaForm);
 	if(callBack != null){ callBack();}
+}
+
+function CompleteConfirmation(){
+	setTimeout(function(){
+		alert("Finish confirmation");
+	}, 1000);
 }

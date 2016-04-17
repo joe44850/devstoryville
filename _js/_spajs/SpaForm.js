@@ -5,7 +5,7 @@ var SpaForm = Class({
 		(vars['submitButton']) ? this.submitButton = vars['submitButton'] : this.submitButton = 'sbmit';
 		this.oSubmitButton = null;
 		this.Spa = new Spa();
-		this.Spa.Debug = false;
+		this.Spa.Debug = true;
 		this.oForm = document.getElementById(this.formID);
 		this.InitSubmitButton();
 	},

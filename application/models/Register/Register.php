@@ -52,7 +52,9 @@
 			return $html;
 		}
 		
-		public function Create($vars=""){			
+		public function Create($vars=""){
+			$_POST['pwd'] = md5($_POST['pwd']);
+			$_POST['token'] = bin2hex(random_bytes(50));
 			$this->User = $_POST;
 			$this->User["success"] = false;
 			if($this->UsernameExists($this->User['username'])){
@@ -65,7 +67,7 @@
 			}
 			else{
 				/* encrypt the password */
-				$_POST['pwd'] = md5($_POST['pwd']);
+				
 				$user_id = SQL::Post($this->User, 'users');
 				$this->User['success'] = "true";
 				$this->_User = $this->User;

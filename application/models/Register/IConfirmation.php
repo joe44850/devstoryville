@@ -4,6 +4,6 @@
 		
 		function CreateCode();
 		function SendEmail();		
-		function Confirm();
+		function Confirm($code);
 		
 	}

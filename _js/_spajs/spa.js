@@ -8,8 +8,8 @@ var Spa = Class({
 		
 		if(this.Debug){
 			vis = "visible";
-			h = 100;
-			w = 200;
+			h = 200;
+			w = 400;
 		}
 		
 		if(frameID == null){			
@@ -20,6 +20,8 @@ var Spa = Class({
 			this.oFrame.setAttribute("name", this.frameID);
 			this.oFrame.width = h;
 			this.oFrame.height = w;
+			this.oFrame.style.width = w + "px";
+			this.oFrame.style.height = h + "px";
 			this.oFrame.style.visibility = vis;
 			document.body.appendChild(this.oFrame);
 			return this.oFrame;

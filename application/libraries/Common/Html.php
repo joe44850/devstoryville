@@ -99,7 +99,7 @@
 		/* Static methods */
 		public static function OnLoad($javascript=""){
 			if(!$javascript){ return;}
-			$html = "<img src='".SITE."/_images/1x1.png' onload=\"function(){ ".$javascript.";}\" style='height:0px;width:0px;' />";
+			$html = "<img src='".SITE."/_images/blank.gif' onload=\"".$javascript."\" style='height:0px;width:0px;' />";
 			return $html;
 		}
 		

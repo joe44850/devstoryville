@@ -16,10 +16,10 @@
 			$now = date("Y-m-d h:i:s");
 			$this->_RemoveConfirmation($this->user['id']);			
 			$code = md5($this->user['id'].$this->user['email'].$now);
-			$sql = "
-					INSERT INTO user_email_confirmation (user_id, creation_date, confirmation_code ) 
-					VALUES ('".$this->user['id']."', '$now', '$code') 
-				";
+			$sql = "INSERT INTO users_email_confirmation ".
+					"(user_id, creation_date, confirmation_code ) ".
+					"VALUES ('".$this->user['id']."', '$now', '$code')";
+			
 			SQL::Query($sql);
 		}
 		
@@ -28,7 +28,7 @@
 		}
 		
 		private function _RemoveConfirmation($user_id=""){
-			$sql = "DELETE FROM user_email_confirmation ".
+			$sql = "DELETE FROM users_email_confirmation ".
 					"WHERE user_id = '$user_id' ";
 			SQL::Query($sql);
 		}
@@ -38,9 +38,19 @@
 			
 		}
 		
-		public function Confirm(){
-			
-			
+		public function Confirm($code){
+			$sql = "SELECT * FROM users_email_confirmation WHERE confirmation_code = '$code' ";
+			$row = SQL::Query($sql, true);
+			if($row){ 
+				$this->_UpdateUser($row);
+				return true;
+			}
+			return false;			
+		}
+		
+		private function _UpdateUser($row=""){
+			$sql = "UPDATE users SET confirmed = 1 where id = '".$row['user_id']."' ";
+			SQL::Query($sql);
 		}
 		
 		

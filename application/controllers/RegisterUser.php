@@ -21,8 +21,10 @@ class RegisterUser extends CI_Controller {
 		if($this->Register->User["success"]){
 			$user = $this->Register->GetCreatedUser();
 			$Confirmation = new Confirmation($user);
-			$Confirmation->SendEmail($Confirmation->CreateCode());
+			$Confirmation->SendEmail($Confirmation->CreateCode());			
 		}
 	}
+	
+
 	
 }

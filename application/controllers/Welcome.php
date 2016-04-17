@@ -25,6 +25,19 @@ class Welcome extends CI_Controller {
 		$params['main_html'] = $this->_MainHTML();		
 		$this->load->view('welcome_message', $params);
 	}
+	
+	public function Confirm(){
+		$this->load->model("Register/Confirmation");
+		$code = $this->Confirmation->confirm($this->uri->segment(2));
+		$params = Array();
+		$params['head_start'] = $this->Html->HeadStart();
+		$params['body_start'] = $this->Html->BodyStart();
+		$params['nav_bar'] = $this->Html->NavBar();		
+		$params['main_html'] = "<div id='main'>Email confirmed, loading login...</div>";
+		$params['main_html'].=HTML::OnLoad("CompleteConfirmation()");
+		$params['msg'] = "";
+		$this->load->view('welcome_message', $params);
+	}
 
 	private function _MainHTML(){
 		if($this->Login->is_logged_in){

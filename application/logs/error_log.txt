@@ -1,0 +1,10 @@
+f 16, 2016 04:22 pmerror_log.txt
+April 16, 2016 04:28 pmSQL ERROR on this query INSERT INTO users_email_confirmation (user_id, creation_date, confirmation_code ) VALUES (\'4\', \'2016-04-16 04:28:15\', \'f8f9c1b06f3ee97d2f09e1d1c3de1e6b\') 
+Erreur de syntaxe près de '\'4\', \'2016-04-16 04:28:15\', \'f8f9c1b06f3ee97d2f09e1d1c3de1e6b\')' à la ligne 1
+
+ April 16, 2016 04:38 pm	 SQL ERROR on this query INSERT INTO users_email_confirmation (user_id, creation_date, confirmation_code ) VALUES (\'5\', \'2016-04-16 04:38:03\', \'52fd4583efcddf79c5e6df5e1b067128\') 
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\'5\', \'2016-04-16 04:38:03\', \'52fd4583efcddf79c5e6df5e1b067128\')' at line 1 
+ April 16, 2016 04:39 pm	 SQL ERROR on this query INSERT INTO users_email_confirmation (user_id, creation_date, confirmation_code ) VALUES (\'6\', \'2016-04-16 04:39:18\', \'eee4bf29a4b0b206af39ebb5f3afe948\') 
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\'6\', \'2016-04-16 04:39:18\', \'eee4bf29a4b0b206af39ebb5f3afe948\')' at line 1  April 16, 2016 06:00 pm	 SQL ERROR on this query SELECT * FROM users_email_confirmation WHERE code = 'aee16f7dfa79ade8061c1b5fc8500aaa'  
+Unknown column 'code' in 'where clause'  April 16, 2016 06:01 pm	 SQL ERROR on this query SELECT * FROM users_email_confirmation WHERE code = 'aee16f7dfa79ade8061c1b5fc8500aaa'  
+Unknown column 'code' in 'where clause' 
