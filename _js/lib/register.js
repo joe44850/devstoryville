@@ -8,6 +8,33 @@ var Register = Class({
 		});
 	},
 	
+	InitConfirmForm : function(){
+		var Append = (
+			function(){
+				this.AppendConfirmationCode();
+			}
+		).bind(this);
+		this._SpaForm = new SpaForm({
+			formID : "confirm-code",
+			ajax : false,
+			beforeSubmit : Append
+		});
+	},
+	
+	InitConfirmResend : function(){
+		this._SpaForm = new SpaForm({
+			formID : 'confirm-resend',
+			submitButton : 'sbmit2'
+		});
+	},
+
+	AppendConfirmationCode : function(){
+		var oForm = document.getElementById('confirm-code');		
+		var action = oForm.getAttribute("action");
+		action += "/"+document.getElementById('token').value;
+		oForm.setAttribute("action", action);
+	},
+	
 	Complete : function(json, _SpaForm){
 		this._SpaForm = _SpaForm;
 		json = JSON.parse(json);
@@ -45,7 +72,8 @@ var Register = Class({
 	},
 	
 	StoreUserInfo : function(json){
-		console.log(json);
+		cookie_string = "username="+json["username"]+";"+"token="+json["token"];
+		JS.StoreCookie("storyville", cookie_string, 365);
 	}
 	
 	

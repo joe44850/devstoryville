@@ -26,6 +26,21 @@
 		public function GetConfirmationCode(){
 			return $this->_confirmation_code;
 		}
+	
+		public function DisplayBadCode(){
+			$html = "<div>".
+					"<form id='resend-confirm'>".
+					"<span class='error'>Bad confirmation code</span><br />".
+					"Resend confirmation code to: <input type='text' name='email' value=''>".
+					"<a href=#>Send</a>".
+					"</form>".
+					"</div><div><p>&nbsp;</p></div>";
+			return $html;
+		}
+		
+		public function ResendConfirmation(){
+			
+		}
 		
 		private function _RemoveConfirmation($user_id=""){
 			$sql = "DELETE FROM users_email_confirmation ".
@@ -40,7 +55,7 @@
 		
 		public function Confirm($code){
 			$sql = "SELECT * FROM users_email_confirmation WHERE confirmation_code = '$code' ";
-			$row = SQL::Query($sql, true);
+			$row = SQL::Query($sql, true);			
 			if($row){ 
 				$this->_UpdateUser($row);
 				return true;

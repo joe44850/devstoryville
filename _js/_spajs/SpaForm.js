@@ -3,6 +3,9 @@ var SpaForm = Class({
 	__construct : function(vars){
 		(vars['formID']) ? this.formID = vars['formID'] : this.formID = "";
 		(vars['submitButton']) ? this.submitButton = vars['submitButton'] : this.submitButton = 'sbmit';
+		this.submitAjax = true;
+		if(vars['ajax'] != null){ this.submitAjax = vars['ajax']; }
+		(vars['beforeSubmit']) ? this.beforeSubmit = vars['beforeSubmit'] : "";
 		this.oSubmitButton = null;
 		this.Spa = new Spa();
 		this.Spa.Debug = true;
@@ -28,11 +31,16 @@ var SpaForm = Class({
 	
 	Submit : function(){
 		if(this.Validate()){
-			if(this.oFrame != null){ this.Spa.DeleteFrame(this.oFrame);}
-			this.oFrame = this.Spa.CreateFrame();
-			this.oForm.setAttribute("target", this.oFrame.name);
-			this.FormDisable();
-			this.SetCallBack();
+			if(this.submitAjax){				
+				if(this.oFrame != null){ this.Spa.DeleteFrame(this.oFrame);}
+				this.oFrame = this.Spa.CreateFrame();
+				this.oForm.setAttribute("target", this.oFrame.name);
+				this.FormDisable();
+				this.SetCallBack();
+			}
+			if(this.beforeSubmit != null){
+				this.beforeSubmit();
+			}
 			this.oForm.submit();
 			
 		}

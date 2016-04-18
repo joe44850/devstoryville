@@ -12,6 +12,12 @@
 		
 		public function SignupHtml(){
 			$html = "
+				<div class='centered div-420'>
+					<br />
+					<center>
+						<p><a href='".BASE."login'>Already a member? Login here</a></p>
+					</center>
+				</div>
 				<div class='signup-wrapper modal-container'>
 					<h1>Join StoryVille.me today.</h1>
 					<form id='signup' name='signup' method='post' action='".BASE."registeruser/attempt' data-callback=CompleteRegistration>

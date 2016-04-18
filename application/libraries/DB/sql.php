@@ -65,7 +65,7 @@ class SQL {
 		return mysqli_insert_id($this->conn);
 	}
 	
-	private function _DoSelect($sql, $return_one){
+	private function _DoSelect($sql, $return_one=false){
 		$res = mysqli_query($this->conn, $sql);
 		if(mysqli_error($this->conn) && $this->dolog){ 
 			Logger::Write("SQL ERROR on this query $sql \n".mysqli_error($this->conn));
