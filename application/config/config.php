@@ -45,6 +45,8 @@ if($is_local){
 	define("DBNAME", "dbstory");
 	define("USER", "storyville-user");
 	define("PWD", "storyville-pwd");
+	define("IMG_DIR", ROOT."/_images");
+	define("IMG_URL", SITE."/_images");
 }
 else{
 	

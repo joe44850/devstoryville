@@ -54,10 +54,14 @@
 		}
 		
 		public function Confirm($code){
-			$sql = "SELECT * FROM users_email_confirmation WHERE confirmation_code = '$code' ";
-			$row = SQL::Query($sql, true);			
+			$sql =  "SELECT * FROM users_email_confirmation em, users u ".
+					"WHERE confirmation_code = '$code' ".
+					"AND em.user_id = u.id ";
+			$row = SQL::Query($sql, true);
+			
 			if($row){ 
 				$this->_UpdateUser($row);
+				Login::SetSession($row['username'], $row['pwd']);
 				return true;
 			}
 			return false;			
@@ -65,6 +69,8 @@
 		
 		private function _UpdateUser($row=""){
 			$sql = "UPDATE users SET confirmed = 1 where id = '".$row['user_id']."' ";
+			SQL::Query($sql);
+			$sql = "DELETE FROM users_email_confirmation WHERE user_id = '".$row['user_id']."'";
 			SQL::Query($sql);
 		}
 		

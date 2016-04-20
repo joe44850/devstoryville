@@ -15,13 +15,21 @@
 		}
 		
 		public function Attempt($username="", $pwd=""){
-			if(!$username){ isset($_SESSION[USER]) ? $username = $_SESSION[USER] : ""; }
-			if(!$pwd){ isset($_SESSION[PWD]) ? $pwd = $_SESSION[PWD] : "";}
-			if(!$username || $pwd){ return false;}
+			if($this->_SessionAuthenticate()){ return true;}
+			if(!$username || !$pwd){ return false;}
 			if(Authenticate::Check($username, $pwd)){				
 				$this->_setSession($username, $pwd);
+				return true;
 			}
 			else $this->Delete();
+			return false;
+		}
+		
+		public function AttemptByToken($username="", $token=""){
+			$userinfo = Authenticate::ByToken($username, $token);
+			if($userinfo["id"]){
+				$this->_SetSession($userinfo['username'], $userinfo['pwd']);
+			}			
 		}
 		
 		public function AttemptOverride(){
@@ -41,23 +49,40 @@
 			
 		}
 		
+		public static function SetSession($user="", $pwd=""){
+			if(!$user || !$pwd){
+				throw new Exception("You cannot call Login::SetSession without user and pwd");
+			}
+			$_SESSION[USER] = $user;			
+			$_SESSION['loggedin'] = true;
+		}
+		
 		public function Delete(){			
 			unset($_SESSION[USER]);
 			unset($_SESSION[PWD]);
 			$this->is_logged_in = false;
-		}		
+		}	
+
+		public function Logout(){
+			unset($_SESSION[USER]);
+			unset($_SESSION[PWD]);
+			unset($_SESSION['loggedin']);
+		}
+		
+		public static function IsLoggedIn(){
+			$obj = new static();
+			return $obj->_SessionAuthenticate();
+		}
 		
 		private function _SessionAuthenticate(){
-			if (!isset($_SESSION[USER])) { return false;}
-			if (!isset($_SESSION[PWD])) { return false;}
-			return Authenticate::Check($_SESSION[USER], $_SESSION[PWD]);
+			if(!isset($_SESSION['loggedin'])){ return false;}
+			if($_SESSION['loggedin']){ return true;}
 		}
 		
 		private function _setSession($user="", $pwd=""){
 			if(!$user || !$pwd){ $this->Delete();}
 			else{
-				$_SESSION[USER] = $user;
-				$_SESSION[PWD] = $pwd;
+				Login::SetSession($user, $pwd);				
 			}
 		}
 		

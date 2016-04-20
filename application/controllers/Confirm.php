@@ -6,15 +6,19 @@ class Confirm extends CI_Controller {
 	
 	public $logged_in;
 	public $display_badcode = "none";
+	public $is_mobile;
+	public $append = "";
 	
 	public function __construct(){
 		parent::__construct();
+		$this->is_mobile = isMobile();
 		$this->Html = new Html();		
 		$this->Login = new Login();
 		$this->Login->Attempt();
 		$this->Account = new Account($this->Login);
 		$this->Register = new Register();
 		$this->Message = new Message($this->Account);
+		$this->append = ($this->is_mobile) ? "_mobile" : "_pc";
 	}
 
 	public function index(){		
@@ -27,7 +31,8 @@ class Confirm extends CI_Controller {
 	
 	private function _Confirm(){		
 		$this->load->model("Register/Confirmation");
-		$confirmed = $this->Confirmation->confirm($this->uri->segment(2));		
+		$confirmed = $this->Confirmation->confirm($this->uri->segment(2));	
+		
 		if(!$confirmed){
 			$this->display_badcode = "block";			
 			return $this->_Nocode();
@@ -40,7 +45,13 @@ class Confirm extends CI_Controller {
 		$params['main_html'].=HTML::OnLoad("CompleteConfirmation()");
 		$params['display_badcode'] = $this->display_badcode;
 		$params['msg'] = "";
-		$this->load->view('welcome_message', $params);
+		$view_header = "headers/header".$this->append;
+		$view_body = "home/home".$this->append;
+		$view_footer = "footers/footer".$this->append;
+		$this->load->view($view_header, $params);
+		$this->load->view($view_body, $params);
+		$this->load->view('home/min'.$this->append, $params);
+		$this->load->view($view_footer);
 	}
 	
 	private function _Nocode(){

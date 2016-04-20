@@ -1,5 +1,7 @@
 var SpaForm = Class({
 	
+	_Spa : null,
+	
 	__construct : function(vars){
 		(vars['formID']) ? this.formID = vars['formID'] : this.formID = "";
 		(vars['submitButton']) ? this.submitButton = vars['submitButton'] : this.submitButton = 'sbmit';
@@ -7,8 +9,8 @@ var SpaForm = Class({
 		if(vars['ajax'] != null){ this.submitAjax = vars['ajax']; }
 		(vars['beforeSubmit']) ? this.beforeSubmit = vars['beforeSubmit'] : "";
 		this.oSubmitButton = null;
-		this.Spa = new Spa();
-		this.Spa.Debug = true;
+		this._Spa = new Spa();
+		this._Spa.Debug = true;
 		this.oForm = document.getElementById(this.formID);
 		this.InitSubmitButton();
 	},
@@ -32,8 +34,8 @@ var SpaForm = Class({
 	Submit : function(){
 		if(this.Validate()){
 			if(this.submitAjax){				
-				if(this.oFrame != null){ this.Spa.DeleteFrame(this.oFrame);}
-				this.oFrame = this.Spa.CreateFrame();
+				if(this.oFrame != null){ this._Spa.DeleteFrame(this.oFrame);}
+				this.oFrame = this._Spa.CreateFrame();
 				this.oForm.setAttribute("target", this.oFrame.name);
 				this.FormDisable();
 				this.SetCallBack();
@@ -118,6 +120,10 @@ var SpaForm = Class({
 		$("#"+id).remove();
 	},
 	
+	RemoveCover : function(){
+		this._Spa.RemoveCover();
+	},
+	
 	PrintOK : function(oItem){
 		
 		var id = oItem.id+"-error";
@@ -133,12 +139,12 @@ var SpaForm = Class({
 	
 	FormDisable : function(oForm){
 		var oForm = (typeof oForm == "undefined") ? this.oForm : oForm;
-		this.Spa.DivCover(oForm);
+		this._Spa.DivCover(oForm);
 	},
 	
 	SetCallBack : function(){
 		self = this;
-		var Complete = (function(){
+		var Complete = (function(){			
 			this.Complete();
 		}).bind(this);
 		
@@ -155,7 +161,7 @@ var SpaForm = Class({
 	
 	Complete : function(){
 		self = this;
-		self.Spa.RemoveCover();
+		self._Spa.RemoveCover();
 		$(self.oFrame).remove();
 	}
 	

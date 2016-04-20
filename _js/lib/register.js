@@ -40,7 +40,7 @@ var Register = Class({
 		json = JSON.parse(json);
 		if(!json.success){ this.DisplayError(json);}
 		else {
-			this.DisplaySuccess(json);
+			this.DisplaySuccess(json);			
 			this.StoreUserInfo(json);
 		}
 	},
@@ -63,7 +63,7 @@ var Register = Class({
 	
 	DisplaySuccess : function(json){		
 		var DisplayComplete = (function(){
-			this._SpaForm.oForm.innerHTML = html;
+			this._SpaForm.oForm.innerHTML = html;			
 		}).bind(this);
 		var html = "<div><center><p>User created!<br />Please check your email to complete.</p><p>&nbsp;</p></center></div>";
 		setTimeout(function(){
@@ -72,21 +72,23 @@ var Register = Class({
 	},
 	
 	StoreUserInfo : function(json){
-		cookie_string = "username="+json["username"]+";"+"token="+json["token"];
-		JS.StoreCookie("storyville", cookie_string, 365);
+		cookie_string = "username="+json["username"]+";"+"token="+json["token"];		
+		try{ JS.StoreCookie("storyville", cookie_string, 365);}
+		catch(e){ console.log(e);}
 	}
 	
 	
 });
 
-function CompleteRegistration(json, _SpaForm, callBack){
+function CompleteRegistration(json, _SpaForm, callBack){	
 	_Register = new Register();
 	_Register.Complete(json, _SpaForm);
 	if(callBack != null){ callBack();}
 }
 
 function CompleteConfirmation(){
+	var url = "../login";
 	setTimeout(function(){
-		alert("Finish confirmation");
+		document.location.href=url;
 	}, 1000);
 }

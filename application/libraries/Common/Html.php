@@ -7,11 +7,13 @@
 		public $cache = false;
 		public $loggedin = false;
 		public $favicon;
+		public $is_mobile = false;
 	
 		public function __construct(){
 			$this->site = SITE;
 			$this->favicon = BASE."/_images/site/favicon.png";
-			if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) $this->loggedin = true ;			
+			if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) $this->loggedin = true ;	
+			$this->is_mobile = isMobile();
 		}
 	
 		//loads every js file in a directory, send a directory that is relative to root, like _js/somejsdir
@@ -58,12 +60,13 @@
 		}
 		
 		public function HeadStart($args=null){
+			$css_dir = ($this->is_mobile) ? "_css/mobile" : "_css/pc";
 			$html = $this->GetDocType();
 			$html.="<head>";
 			isset($this->title) ? $title = $this->title : $title = SITE_TITLE;
 			$html.="\n<title>$title</title>\n";
 			$js = $this->LoadJavascript("_js");			
-			$css = $this->LoadCss("_css");			
+			$css = $this->LoadCss($css_dir);			
 			$html.= $js . $css;
 			if($args){
 				if(is_array($args)){ 
@@ -107,7 +110,7 @@
 			$menu_main = $this->MenuMain();
 			$html = "
 				<div id=\"HeaderTop\">
-					<div id=\"HeaderCenter\">			
+					<div id=\"HeaderCenter\" onclick=\"document.location.href='".SITE."'\">			
 						<div id=\"LogoMain\">&nbsp;</div>
 						$menu_main
 					</div>
@@ -116,22 +119,85 @@
 			return $html;
 		}
 		
+		public function LogoHeader(){
+			$html = "
+				<div id=\"HeaderTop\" onclick=\"document.location.href='".SITE."'\">
+					<div id=\"HeaderCenter\" onclick=\"document.location.href='".SITE."'\">			
+						<div id=\"LogoMain\">&nbsp;</div>						
+					</div>
+				</div>
+			";
+			return $html;
+		}
+		
 		public function MenuMain(){
+				$menu = $this->_GetMenu();
 				$account_text = $this->loggedin ? "My Account" : "Sign Up";
 				$html = "
-					<div>
+					<div id='menuMainDiv'>
 						<ul id='menuMain'>
-						<li><a>Q&A</a></li>
-						<li><a>Chat</a></li>
-						<li><a>Stories</a></li>
-						<li><a>Search</a>
-						<li><a>$account_text</a></li>
+				";
+				foreach($menu as $menu_item){
+					$html.="<li><a href='{$menu_item['url']}'>{$menu_item['label']}</a></li>";
+				}
+				$html.="
 					</ul>
 				</div>";		
 			
 			return $html;
 		}
-	
+		
+		private function _GetMenu(){
+			
+			$base = BASE;
+			$menu = array();
+			$menu[0]['url'] = $base."questions";
+			$menu[0]['label'] = "Q & A";
+			
+			$menu[1]['url'] = $base."stories";
+			$menu[1]['label'] = "Stories";
+			
+			$menu[2]['url'] = $base."search";
+			$menu[2]['label'] = "Search";
+			
+			$menu[3]['url'] = $base."login";
+			$menu[3]['label'] = "Login";
+			
+			if(Login::IsLoggedIn()){ 
+				$menu[3]['url'] = $base."account";
+				$menu[3]['label'] = "My Account";
+			}
+			return $menu;
+		}
+		
+		public function GetSubMenu(){
+			$html = "
+					<div id='notifications-bar'>
+						<div>
+							<ul id='notify'>								
+								<li id='notify-questions'>
+									<a href='".SITE."/questions'>
+										<span id='notify-questions-icon'>&nbsp;</span>
+										<span>Questions</span>
+									</a>
+								</li>
+								<li id='notify-response'>
+									<a href='".SITE."/questions/my'>
+										<span id='notify-responses-icon'>&nbsp;</span>
+										<span>Responses</span>
+									</a>
+								</li>
+								<li id='notify-messages'>									
+									<a href='".SITE."/messages'>
+										<span id='notify-messages-icon'>&nbsp;</span>
+										<span>Messages</span>
+									</a></li>
+							</ul>
+						</div>
+					</div>
+			";
+			return $html;
+		}
 	}
 	
 	

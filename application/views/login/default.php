@@ -1,21 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+echo $logo_header;
 ?>
-<?php 
-	echo $head_start;
-	echo $body_start;	
-	
-?>
-	<p>&nbsp;</p><p>&nbsp;</p>
-	<div class='centered-rows'>		
-		<p>&nbsp;</p>
+	<p>&nbsp;</p>
+	<div class='centered-rows'>			
 		<div class='signup-wrapper modal-container'>
 			<div class='default-popup-header'>
 				<div id='LogoMain'></div>
 			</div>
 			
 			<small class='text-muted'>Login</small>
-			<form id='login' name='login' method='post' action='".BASE."loginattempt' data-callback=LoginAttempt>
+			<form id='login' name='login' method='post' action='<?php echo ".SITE."?>/loginattempt' data-callback=LoginAttempt>
 				<fieldset class="form-group">
 					<label for="username">Username</label>
 					<input type='text' name="username" class="form-control" id="username" 
@@ -40,5 +35,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>	
 	</div>
 	
-</body>
-</html>

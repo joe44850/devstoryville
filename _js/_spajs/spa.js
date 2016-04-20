@@ -51,7 +51,7 @@ var Spa = Class({
 		$(CoverDiv).animate({opacity:.5},250);
 	},
 	
-	RemoveCover : function(){
+	RemoveCover : function(){		
 		var jCover = $("#spa-cover");
 		jCover.animate({opacity:0},250, function(){
 			jCover.remove();

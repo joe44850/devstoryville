@@ -35,7 +35,7 @@ $actionresend = BASE."confirmresend";
 			<form id='confirm-code' action="<?php echo $actionurl;?>" Method="Post">
 				<fieldset class='form-group'>
 					<label for='token'>Confirmation code:</label>
-					<input type='text' id='token' name='token' data-validation="{min:25}" size='25' maxlength='25' /> 
+					<input type='text' id='token' name='token' data-validation="{min:25}" size='25' maxlength='100' /> 
 				</fieldset>
 				
 				<fieldset>
