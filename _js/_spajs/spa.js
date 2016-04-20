@@ -51,6 +51,19 @@ var Spa = Class({
 		$(CoverDiv).animate({opacity:.5},250);
 	},
 	
+	/* DivClone({oDiv : 'yourdiv', id : 'newdivid', copycontent : false}) */
+	DivClone : function(vars){
+		if(vars["oDiv"] == null){ return;}
+		var oDiv = vars["oDiv"];		
+		clone = oDiv.cloneNode(true);
+		if(typeof vars["id"] != "undefined"){ clone.id = vars["id"]; }		
+		if(vars["copycontent"] != null && vars["copycontent"] == false){
+			clone.innerHTML = "&nbsp;";
+		}
+		document.body.appendChild(clone);
+		return oDiv;
+	},
+	
 	RemoveCover : function(){		
 		var jCover = $("#spa-cover");
 		jCover.animate({opacity:0},250, function(){

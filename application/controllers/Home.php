@@ -23,6 +23,9 @@ class Home extends CI_Controller {
 	}
 
 	public function index(){
+		if(!$this->logged_in){
+			return $this->splash();
+		}
 		$params = Array();
 		$params['head_start'] = $this->Html->HeadStart();
 		$params['body_start'] = $this->Html->BodyStart();
@@ -36,6 +39,15 @@ class Home extends CI_Controller {
 		$this->load->view($view_body, $params);
 		if(!$this->Login->is_logged_in){ $this->load->view("register/register".$this->append);}
 		$this->load->view($view_footer, $params);
+	}
+	
+	public function splash(){
+		$params['head_start'] = $this->Html->HeadStart();
+		$params['body_start'] = $this->Html->BodyStart();
+		$view_footer = "footers/footer".$this->append;
+		$view = "home/splash".$this->append;
+		$this->load->view($view, $params);
+		$this->load->view($view_footer);
 	}
 	
 	public function loginAttempt(){
