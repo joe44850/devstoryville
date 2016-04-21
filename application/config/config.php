@@ -36,6 +36,7 @@ if($is_local){
 	define("LIB", ROOT."/application/libraries");
 	define("MOD", ROOT."/application/models");
 	define("HLP", ROOT."/application/helpers");
+	define("VIEW", ROOT."/application/views");
 	define("FAVICON", SITE."/_images/site/favicon.png");
 	define("IS_LOCAL", TRUE);
 	define("BASE", "/dev-storyville/");
