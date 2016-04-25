@@ -15,8 +15,12 @@ body{
 	margin-top:0;
 	margin-left:0;
 	font-family:sans-serif;
-	background:#FBFBEF;
+	background:#F5FBFC;
 	overflow-x:hidden;
+}
+
+.body-bg{
+	background-color:#F5FBFC;
 }
 
 form input[type=text] {
@@ -144,6 +148,14 @@ form input[type=text] {
 	max-height:44px;
 }
 
+#header-center{
+	margin:0 auto;
+	width:90%;
+	max-width:1200px;
+	color:#fff;	
+	max-height:44px;
+}
+
 .centered {
 	max-width:1200px;
 	width:100%;
@@ -162,6 +174,18 @@ form input[type=text] {
 	margin:0 auto;
 }
 
+.div-500{
+	width:500px;
+	max-width:500xp;
+	margin:0 auto;
+}
+
+.div-600{
+	width:600px;
+	max-width:600xp;
+	margin:0 auto;
+}
+
 .col-left{
 	width:70%;
 	float:left;
@@ -176,8 +200,7 @@ form input[type=text] {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 5px;
-	box-shadow: 0 5px 15px rgba(0,0,0,.5);
-	padding:10px;
+	box-shadow: 0 5px 15px rgba(0,0,0,.5);	
 }
 
 .default-popup-header {
@@ -252,6 +275,12 @@ ul#capsuleUL h3 {
 /*****************	30 - HEADINGS, LINKS		********/
 .error { 
 	color :red;
+}
+
+.headline-large{
+	font-size:24px;
+	color:#888;
+	padding-bottom:5px;
 }
 
 
@@ -359,7 +388,7 @@ ul#notify li a span{
 .signup-wrapper{
     width: 420px;	
     margin: 0 auto;
-	background:#fff;
+	padding:10px;
 	margin-top:10px;
 }
 

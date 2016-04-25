@@ -55,6 +55,7 @@ $route['logout'] = 'home/logout';
 $route['loginattempt'] = 'home/loginattempt';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['confirm/resend'] = 'confirm/resend';
 $route['confirm/(:any)'] = 'confirm/index/$1';
 
 

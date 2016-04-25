@@ -1,4 +1,6 @@
-			
+<?php
+	$site = SITE;
+?>
 	<div class='big-font'>Login</div>
 	<form id='login' name='login' method='post' action='<?php echo $site; ?>/loginattempt' data-callback=LoginAttempt>
 		<fieldset class="form-group">

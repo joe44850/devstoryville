@@ -18,7 +18,7 @@ class Confirm extends CI_Controller {
 		$this->Account = new Account($this->Login);
 		$this->Register = new Register();
 		$this->Message = new Message($this->Account);
-		$this->append = ($this->is_mobile) ? "_mobile" : "_pc";
+		$this->append = ($this->is_mobile) ? "_mobile" : "_pc";		
 	}
 
 	public function index(){		
@@ -27,6 +27,20 @@ class Confirm extends CI_Controller {
 			$this->_Nocode(); 
 		}
 		else $this->_Confirm();
+	}
+	
+	public function resend(){
+		$this->load->model("Register/Confirmation");
+		$retval = array();
+		$email = $_REQUEST['resendemail'];
+		if($this->Confirmation->Resend($email, $this->Account)){
+			$retval['success'] = true;
+			$retval['message'] = "We have sent a new confirmation code to your email: $email";
+		}else{
+			$retval['success'] = false;
+			$retval['message'] = "We could not find $email in our records";
+		}
+		echo json_encode($retval);
 	}
 	
 	private function _Confirm(){		
@@ -45,12 +59,12 @@ class Confirm extends CI_Controller {
 		$params['main_html'].=HTML::OnLoad("CompleteConfirmation()");
 		$params['display_badcode'] = $this->display_badcode;
 		$params['msg'] = "";
-		$view_header = "headers/header".$this->append;
+		$view_header = "headers/min".$this->append;
 		$view_body = "home/home".$this->append;
 		$view_footer = "footers/footer".$this->append;
 		$this->load->view($view_header, $params);
 		$this->load->view($view_body, $params);
-		$this->load->view('home/min'.$this->append, $params);
+		$this->load->view('home/default'.$this->append, $params);
 		$this->load->view($view_footer);
 	}
 	
@@ -61,7 +75,11 @@ class Confirm extends CI_Controller {
 		$params['body_start'] = $this->Html->BodyStart();
 		$params['nav_bar'] = $this->Html->NavBar();	
 		$params['display_badcode'] = $this->display_badcode;
+		$view_header = "headers/min".$this->append;
+		$view_footer = "footers/footer".$this->append;
+		$this->load->view($view_header, $params);
 		$this->load->view('login/confirmcodeform', $params);
+		$this->load->view($view_footer);
 	}
 
 	private function _MainHTML(){

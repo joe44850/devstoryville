@@ -3,13 +3,14 @@
 	echo $head_start;
 	echo $body_start;
 	$imgdir = SITE."/_images/site/home";
+	$site = SITE;
 	
 ?>
 	<div id='splash-top-fix' class='grd-orange-blue'></div>
 	<div id='splash-buttons-container'>
 		<div class='centered' style='text-align:right;'>
-			<a href=#>Signup</a>&nbsp;
-			<a href=#>Login</a>&nbsp;
+			<a href='<?php echo $site;?>/registeruser'>Signup</a>&nbsp;
+			<a href='<?php echo $site;?>/login'>Login</a>&nbsp;
 		</div>		
 	</div>	
 	

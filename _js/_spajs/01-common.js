@@ -7,6 +7,12 @@ function arrayKey(needle, haystack){
 	return -1;
 }
 
+function isNull(item){
+	if(typeof item == "undefined"){ console.log("Item is undefined");return true;}
+	else if(item == null){ console.log("Item is null");return true;}
+	else if(item == ""){ console.log("Items equals blank");return true;}
+}
+
 var JS = {
 	
 	Now : function(){

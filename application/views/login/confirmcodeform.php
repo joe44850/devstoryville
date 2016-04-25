@@ -1,23 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $actionurl = BASE."confirm";
-$actionresend = BASE."confirmresend";
+$actionresend = BASE."confirm/resend";
 ?>
-<?php 
-	echo $head_start;
-	echo $body_start;
-	echo $nav_bar;
-	
-?>
-	<p>&nbsp;</p><p>&nbsp;</p>
+
+	<p>&nbsp;</p>
 	<div class='centered-rows'>	
-		<div id='div-confirm'>
+		<div id='div-confirm' class='div-500'>
 			<div style='display:<?php echo $display_badcode;?>;' id='div-bad-confirm'>
-				<form id='confirm-resend' action="<?php echo $actionresend;?>" >
+				<form id='confirm-resend' action="<?php echo $actionresend;?>" class='body-bg' >
 					<span class='error'>Bad confirmation code</a></span><br />
+					<div class='headline-large'>Need us to re-send confirmation code?</div>
 					<fieldset>
-						<label for='token2'>Re-send confirmation code to :</label>
-						<input type='text' name='resend-email' data-validation="{min:5,rules:['email']}" size='40'> 
+						<label for='token2'>Email confirmation code to :</label>
+						<input type='text' name='resendemail' id='resendemail' data-validation="{min:5,rules:['email']}" size='40'> 
 					</fieldset>
 					
 					<fieldset>
@@ -31,8 +27,10 @@ $actionresend = BASE."confirmresend";
 				<p>&nbsp;</p>
 			</div>
 			
+			<div class='headline-large'>Try entering your confirmation code again</div>
+			
 			<div>Please enter the confirmation code from your email</div>
-			<form id='confirm-code' action="<?php echo $actionurl;?>" Method="Post">
+			<form id='confirm-code' action="<?php echo $actionurl;?>" Method="Post" class='body-bg'>
 				<fieldset class='form-group'>
 					<label for='token'>Confirmation code:</label>
 					<input type='text' id='token' name='token' data-validation="{min:25}" size='25' maxlength='100' /> 

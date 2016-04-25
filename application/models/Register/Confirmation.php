@@ -38,7 +38,7 @@
 			return $html;
 		}
 		
-		public function ResendConfirmation(){
+		public function Resend($email, Account $Account){
 			
 		}
 		

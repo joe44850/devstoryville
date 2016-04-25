@@ -1,5 +1,5 @@
 var Spa = Class({
-	Debug : false,	
+	Debug : true,	
 	
 	CreateFrame : function(frameID){
 		vis = "hidden";
@@ -33,22 +33,29 @@ var Spa = Class({
 		oFrame.parentNode.removeChild(oFrame);
 	},
 	
-	DivCover : function(oDiv){
+	DivCover : function(oDiv){		
+		oDiv.innerHTML = "<div id='spa-cover-parent' style='position:relative;'></div>"+oDiv.innerHTML;	
+				
 		var jDiv = $(oDiv);
 		var position = jDiv.position();
 		var CoverDiv = document.createElement("div");
+		var bgcolor = "#000";
+		console.log(oDiv);
+		if(!isNull(oDiv.style.backgroundColor)){ bgcolor = oDiv.style.backgroundColor;}
+		else if(!isNull(oDiv.style.background)){ bgcolor = oDiv.style.background;}
+		
 		CoverDiv.style.position = "absolute";
-		CoverDiv.style.left = position.left+"px";
-		CoverDiv.style.top = position.top+"px";
+		CoverDiv.style.left = "0px";
+		CoverDiv.style.top = "0px";
 		CoverDiv.style.height = jDiv.height()+"px";
 		CoverDiv.style.width = jDiv.width()+"px";
-		CoverDiv.style.opacity = .0;
-		CoverDiv.style.background = "#fff";
+		CoverDiv.style.opacity = 0;				
 		CoverDiv.style.zIndex = 1000;
 		CoverDiv.id = "spa-cover";
-		document.body.appendChild(CoverDiv);
+		CoverDiv.style.backgroundColor = bgcolor;
+		document.getElementById('spa-cover-parent').appendChild(CoverDiv);
 		/* fade in quickly */
-		$(CoverDiv).animate({opacity:.5},250);
+		$(CoverDiv).animate({opacity:.3},250);
 	},
 	
 	/* DivClone({oDiv : 'yourdiv', id : 'newdivid', copycontent : false}) */
@@ -64,10 +71,11 @@ var Spa = Class({
 		return oDiv;
 	},
 	
-	RemoveCover : function(){		
+	RemoveCover : function(){			
 		var jCover = $("#spa-cover");
 		jCover.animate({opacity:0},250, function(){
 			jCover.remove();
+			$("#spa-cover-parent").remove();
 		});
 		this.oFrame = null;
 	}

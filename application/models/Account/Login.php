@@ -28,6 +28,7 @@
 		public function AttemptByToken($username="", $token=""){
 			$userinfo = Authenticate::ByToken($username, $token);
 			if($userinfo["id"]){
+				print_r($userinfo);
 				$this->_SetSession($userinfo['username'], $userinfo['pwd']);
 			}			
 		}

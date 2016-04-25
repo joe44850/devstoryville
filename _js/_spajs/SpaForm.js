@@ -42,14 +42,14 @@ var SpaForm = Class({
 			}
 			if(this.beforeSubmit != null){
 				this.beforeSubmit();
-			}
+			}			
 			this.oForm.submit();
 			
 		}
 		else return false;
 	},
 	
-	Validate : function(){
+	Validate : function(){		
 		var el;
 		var val;
 		for(var i = 0; i < this.oForm.elements.length; i++){			
@@ -137,9 +137,11 @@ var SpaForm = Class({
 		oError.style.weight = "bold";
 	},
 	
-	FormDisable : function(oForm){
-		var oForm = (typeof oForm == "undefined") ? this.oForm : oForm;
-		this._Spa.DivCover(oForm);
+	FormDisable : function(){
+		els = this.oForm.elements;
+		for(var i=0; i<els.length;i++){
+			
+		}
 	},
 	
 	SetCallBack : function(){
@@ -160,9 +162,10 @@ var SpaForm = Class({
 	},
 	
 	Complete : function(){
-		self = this;
+		self = this;		
 		self._Spa.RemoveCover();
-		$(self.oFrame).remove();
+		$(self.oFrame).remove();		
+		this.InitSubmitButton();
 	}
 	
 	

@@ -14,8 +14,7 @@ var Splash = Class({
 		var jDiv = $('#splashMenuContainer');
 		$(window).scroll(function(e){
 			console.log($(window).scrollTop());
-			if($(window).scrollTop() > 95){
-				console.log("Greater than 50");
+			if($(window).scrollTop() > 95){				
 				jDiv.addClass('splash-fixed');
 			}
 			else{				

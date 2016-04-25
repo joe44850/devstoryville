@@ -23,6 +23,7 @@
 			$_POST['token'] = bin2hex(random_bytes(50));
 			$this->User = $_POST;
 			$this->User["success"] = false;
+			Logger::Write($_POST);
 			if($this->UsernameExists($this->User['username'])){
 				$this->User["create_error"] = "The username {$this->User['username']} already exists in our system";
 				return;

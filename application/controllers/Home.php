@@ -67,7 +67,7 @@ class Home extends CI_Controller {
 		$params['head_start'] = $this->Html->HeadStart();
 		$params['body_start'] = $this->Html->BodyStart();
 		$params['logo_header'] = $this->Html->LogoHeader();
-		$view_header = "headers/header".$this->append;
+		$view_header = "headers/min".$this->append;
 		$view_body = "login/default".$this->append;
 		$view_footer = "footers/footer".$this->append;
 		$this->load->view($view_header, $params);
