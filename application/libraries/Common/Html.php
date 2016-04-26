@@ -109,7 +109,7 @@
 		public function NavBar(){
 			$menu_main = $this->MenuMain();
 			$html = "
-				<div id=\"HeaderTop\">
+				<div id=\"HeaderTop\" class='grd-orange-blue'>
 					<div id=\"HeaderCenter\" onclick=\"document.location.href='".SITE."'\">			
 						<div id=\"LogoMain\">&nbsp;</div>
 						$menu_main

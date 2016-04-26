@@ -124,11 +124,6 @@ form input[type=text] {
     z-index: 999;
     top: 0;
 	left:0;
-	background: #6d1505; /* Old browsers */
-	background: -moz-linear-gradient(top, #6d1505 0%, #600f04 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #6d1505 0%,#600f04 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #6d1505 0%,#600f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d1505', endColorstr='#600f04',GradientType=0 ); 
 	margin:0 auto;
 }
 
@@ -137,7 +132,7 @@ form input[type=text] {
 	width:90%;
 	max-width:1200px;
 	color:#fff;
-	background:url('images/buildings2.png') no-repeat right;
+	/*background:url('images/buildings2.png') no-repeat right;*/
 	max-height:44px;
 }
 

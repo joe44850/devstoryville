@@ -63,8 +63,7 @@ class Confirm extends CI_Controller {
 		$view_body = "home/home".$this->append;
 		$view_footer = "footers/footer".$this->append;
 		$this->load->view($view_header, $params);
-		$this->load->view($view_body, $params);
-		$this->load->view('home/default'.$this->append, $params);
+		$this->load->view($view_body, $params);		
 		$this->load->view($view_footer);
 	}
 	
